@@ -1,40 +1,45 @@
 {% set name = "python-bidi" %}
-{% set version = "0.4.2" %}
-{% set sha256 = "5347f71e82b3e9976dc657f09ded2bfe39ba8d6777ca81a5b2c56c30121c496e" %}
+{% set version = "0.6.6" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 07db4c7da502593bd6e39c07b3a38733704070de0cbf92a7b7277b7be8867dd9
 
 build:
   number: 0
-  # trigger 1
-  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - pybidi = bidi:main
 
 requirements:
+  build:
+    - {{ stdlib("c") }}
+    - {{ compiler("c") }}
+    - {{ compiler("rust") }}
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+    - maturin >=1,<2
   run:
     - python
-    - six
 
 test:
+  source_files:
+    - tests
   imports:
     - bidi
+    - bidi.algorithm
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v tests
     - pybidi --help
 
 about:
