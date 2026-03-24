@@ -51,7 +51,7 @@ about:
     - COPYING.LESSER
   summary: Pure python implementation of the BiDi layout algorithm
   description: Bi-directional (BiDi) layout implementation in pure python
-  doc_url: https://python-bidi.readthedocs.io/en/latest/
+  doc_url: https://python-bidi.readthedocs.io
   dev_url: https://github.com/MeirKriheli/python-bidi
 
 extra:
