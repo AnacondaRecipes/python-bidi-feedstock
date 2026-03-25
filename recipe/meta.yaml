@@ -1,13 +1,13 @@
 {% set name = "python-bidi" %}
-{% set version = "0.6.6" %}
+{% set version = "0.6.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 07db4c7da502593bd6e39c07b3a38733704070de0cbf92a7b7277b7be8867dd9
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: c10065081c0e137975de5d9ba2ff2306286dbf5e0c586d4d5aec87c856239b41
 
 build:
   number: 0
@@ -51,7 +51,7 @@ about:
     - COPYING.LESSER
   summary: Pure python implementation of the BiDi layout algorithm
   description: Bi-directional (BiDi) layout implementation in pure python
-  doc_url: https://python-bidi.readthedocs.io/en/latest/
+  doc_url: https://python-bidi.readthedocs.io
   dev_url: https://github.com/MeirKriheli/python-bidi
 
 extra:
